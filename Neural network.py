@@ -36,6 +36,5 @@ for input,label in zip(inputs,labels):
                                                                                          # output squaring it and then summing it and diving it by length of rows
 
 #add backward propagation
-print('test')
 
 
