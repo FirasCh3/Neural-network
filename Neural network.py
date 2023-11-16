@@ -4,7 +4,8 @@ import pandas as pd
 
 def sigmoid(Z):
     return 1 / (1 + np.exp(-Z))
-
+def derivative(Z):
+    return sigmoid(Z)*(1-sigmoid(Z))
 
 def forward_propagation(input):
     return True
