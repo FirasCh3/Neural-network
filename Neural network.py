@@ -25,18 +25,17 @@ def get_label_matrix(x):
 def training(weights , weights2 , biases1 , biases2):
         #put all of this in a forward_propagation function
     correct_predictions = 0
-    total_predictions=0
+    total_predictions = 0
     for i in range(iterations):
         for input, label in zip(inputs, labels):
             expected_output=get_label_matrix(label)
             input.shape += (1,) #each input in inputs used to be a vector we modified its shape to make it a matrix with 784 rows and 1 column
             layer1 = sigmoid(weights.dot(input)+biases1) #layer 1 is calculated then we apply sigmoid as an activation function which tells us if the neuron is active or not
             outputs = sigmoid(weights2.dot(layer1)+biases2)  #calculate the layer of output
-            total_predictions+=1
+            total_predictions += 1
             mean_squared_error = (1/len(outputs)) * np.sum(np.square(np.subtract(expected_output, outputs))) #calculating mean squared error which is basically # subtracting the expected output from the
                                                                                                              # output squaring it and then summing it and diving it by length of rows
-            print(label)
-            print(outputs)
+            print()
             #calculating derivative of the cost function with respect to the weights2 and biases2
             correct_predictions += int(np.argmax(outputs) == np.argmax(expected_output))
             delta = (-(expected_output-outputs))*derivative(weights2.dot(layer1)+biases2)
@@ -49,6 +48,6 @@ def training(weights , weights2 , biases1 , biases2):
             weights = weights - dw1
             db1 = ((weights2.T.dot(delta))*derivative(weights.dot(input)+biases1))
             biases1 = biases1 - db1
-    print(total_predictions,correct_predictions)
+    print(total_predictions, correct_predictions)
     print((correct_predictions/total_predictions)*100)
 training(weights,weights2,biases1,biases2)
