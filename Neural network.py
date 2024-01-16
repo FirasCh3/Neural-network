@@ -14,11 +14,11 @@ class LogisticRegressor:
         self.y_test = None
         self.weights = None
         self.biases = None
-
-        self.hidden = np.ndarray(shape=())
     def __sigmoid(self, Z):
 
        return 1/(1+np.exp(-Z))
+    def __relu(self, Z):
+        return np.maximum(0, Z)
     def __derivative(self, Z):
 
         return self.sigmoid(Z)*(1-self.sigmoid(Z))
@@ -28,12 +28,11 @@ class LogisticRegressor:
         self.weights = np.ones(shape=(8, 3))
         for x in self.x_train:
             x = np.reshape(x, (8, 1))
-            print(x)
-            print(self.weights)
-            print(self.biases)
-            layer1 = np.dot(x.T, self.weights)+self.biases
+            print(np.dot(x.T, self.weights)+self.biases)
+            layer1 = self.__relu(np.dot(x.T, self.weights)+self.biases)
             print(layer1)
-            print("---------------------------------")
+
+
 
 
 
