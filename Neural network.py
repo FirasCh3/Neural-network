@@ -36,7 +36,7 @@ class LogisticRegressor:
         weight = np.random.normal(0, np.sqrt(2/(input_length+output_length)), (output_length, input_length))
         return weight
     def train(self):
-        self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.X, self.y, train_size=0.3, random_state=42)
+        self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.X, self.y, train_size=0.7, random_state=42)
         epsilon = 1e-10
         self.biases = np.zeros(shape=(3, 1))
         self.biases2 = np.zeros(shape=(1, 1))
